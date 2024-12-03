@@ -1,0 +1,26 @@
+@media (min-width: 1025px) {
+    .h-custom {
+        height: 100vh !important;
+    }
+}
+
+.card-registration .form-outline .form-control {
+    border: 1px solid #ddd;
+}
+
+.card-registration .form-outline .form-label {
+    color: #6c757d;
+}
+
+.gradient-custom-2 {
+    background: linear-gradient(to right, rgba(161, 196, 253, 1), rgba(194, 233, 251, 1));
+}
+
+.bg-indigo {
+    background-color: #4835d4;
+}
+
+.card-registration .btn-light {
+    background-color: #fff;
+    color: #4835d4;
+}
