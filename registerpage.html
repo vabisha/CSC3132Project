@@ -36,27 +36,33 @@
     }
 
     /* Card styling */
-    .card {
-      background-color: white;
-      border-radius: 15px;
-      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
-      padding: 20px;
-      width: 100%;
-      max-width: 400px;
-    }
+.card {
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+  padding: 30px; /* Added padding for uniform spacing */
+  width: 100%;
+  max-width: 400px;
+  box-sizing: border-box; /* Ensures padding does not affect width */
+}
 
-    /* Form controls styling */
-    .form-outline {
-      margin-bottom: 20px;
-    }
+/* Form controls styling */
+.form-outline {
+  margin-bottom: 20px;
+}
 
-    .form-control-lg {
-      width: 100%;
-      padding: 10px 15px;
-      font-size: 16px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-    }
+.form-control-lg {
+  width: 100%; /* Ensures input fields span full width */
+  padding: 10px 15px; /* Spacing inside input fields */
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box; /* Includes padding and border in width */
+}
+
+    
+
+  
 
     /* Button styling */
     button {
@@ -108,26 +114,30 @@
         <form action="/register" method="POST">
           <!-- Name Input -->
           <div class="form-outline">
-            <input type="text" id="name" class="form-control form-control-lg" placeholder="Enter your name" required />
             <label class="form-label" for="name">Your Name</label>
+            <input type="text" id="name" class="form-control form-control-lg" placeholder="Enter your name" required />
+            
           </div>
 
           <!-- Email Input -->
           <div class="form-outline">
-            <input type="email" id="email" class="form-control form-control-lg" placeholder="Enter your email" required />
             <label class="form-label" for="email">Your Email</label>
+            <input type="email" id="email" class="form-control form-control-lg" placeholder="Enter your email" required />
+            
           </div>
 
           <!-- Password Input -->
           <div class="form-outline">
-            <input type="password" id="password" class="form-control form-control-lg" placeholder="Create a password" required />
             <label class="form-label" for="password">Password</label>
+            <input type="password" id="password" class="form-control form-control-lg" placeholder="Create a password" required />
+            
           </div>
 
           <!-- Confirm Password Input -->
           <div class="form-outline">
-            <input type="password" id="confirm-password" class="form-control form-control-lg" placeholder="Repeat your password" required />
             <label class="form-label" for="confirm-password">Repeat Password</label>
+            <input type="password" id="confirm-password" class="form-control form-control-lg" placeholder="Repeat your password" required />
+            
           </div>
 
           <!-- Terms and Conditions -->
