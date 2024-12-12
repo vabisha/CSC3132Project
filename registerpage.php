@@ -156,7 +156,7 @@
           <!-- Login Link -->
           <p class="text-center text-muted mt-5 mb-0">
             Already have an account? 
-            <a href="/login" class="fw-bold text-body"><u>Login here</u></a>
+            <a href="login.php" class="fw-bold text-body"><u>Login here</u></a>
           </p>
         </form>
         <!-- End of Form -->
