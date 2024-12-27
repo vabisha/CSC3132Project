@@ -3,30 +3,38 @@
 session_start();
 
 // Include the database connection
-include('dbconfig.php'); // Make sure you have this file with DB credentials
+include('dbconfig.php');
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get form data
-    $username = $_POST['username'];
+    $username = $_POST['username']; // Can be username or email
     $password = $_POST['password'];
 
-    // Query to check if the user exists in the database
-    $sql = "SELECT * FROM users WHERE username = ?";
-    $stmt = $conn->prepare($sql);  // Prepare the statement
-    $stmt->bind_param("s", $username);  // Bind the parameter (s = string)
-    $stmt->execute();  // Execute the query
-    $result = $stmt->get_result();  // Get the result
-    $user = $result->fetch_assoc();  // Fetch the user data as an associative array
+    // Determine if the username is an email or just a username
+    if (filter_var($username, FILTER_VALIDATE_EMAIL)) {
+        // It's an email address
+        $sql = "SELECT id, username, email, password FROM users WHERE email = ?";
+    } else {
+        // It's a username
+        $sql = "SELECT id, username, email, password FROM users WHERE username = ?";
+    }
 
-    // If the user exists and the password matches (using password_verify)
+    // Prepare the SQL query
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $username); // Bind the parameter
+    $stmt->execute(); // Execute the query
+    $result = $stmt->get_result(); // Get the result
+    $user = $result->fetch_assoc(); // Fetch the user data as an associative array
+
+    // If the user exists and the password matches
     if ($user && password_verify($password, $user['password'])) {
-        // Start the session for the user
+        // Start the session and store the username
         $_SESSION['username'] = $user['username'];
-        header("Location: welcome.php");  // Redirect to welcome page
+        header("Location: welcome.php");  // Redirect to the welcome page
         exit;
     } else {
-        // Display an error message if credentials are incorrect
+        // Display an error message if login failed
         $error = "Invalid username or password!";
     }
 }
@@ -65,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         <p>Please login to your account</p>
 
                                         <div class="form-outline mb-4">
-                                            <input type="email" id="username" name="username" class="form-control" placeholder="Phone number or email address" required />
+                                            <input type="text" id="username" name="username" class="form-control" placeholder="Phone number or email address" required />
                                             <label class="form-label" for="username">Username</label>
                                         </div>
 
