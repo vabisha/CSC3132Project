@@ -2,6 +2,11 @@
 require_once 'dbconf.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Check if all expected keys exist in $_POST
+    if (!isset($_POST['name'], $_POST['email'], $_POST['password'], $_POST['confirm_password'])) {
+        die("All fields are required.");
+    }
+
     // Capture and sanitize form data
     $name = trim($_POST['name']);
     $email = trim($_POST['email']);
@@ -17,20 +22,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Passwords do not match.");
     }
 
+    // Check if email already exists
+    $email_check = $conn->prepare("SELECT id FROM user WHERE email = ?");
+    $email_check->bind_param("s", $email);
+    $email_check->execute();
+    $email_check->store_result();
+    if ($email_check->num_rows > 0) {
+        die("Error: Email already registered.");
+    }
+    $email_check->close();
+
     // Hash the password
     $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
-    // Insert into database
-    $stmt = $conn->prepare("INSERT INTO users (name, email, password) VALUES (?, ?, ?)");
+    // Insert into the 'user' table
+    $stmt = $conn->prepare("INSERT INTO user (name, email, password) VALUES (?, ?, ?)");
     if (!$stmt) {
-        die("Prepare failed: " . $conn->error);
+        die("Prepare failed: " . $conn->error); // Debugging statement
     }
 
     $stmt->bind_param("sss", $name, $email, $hashed_password);
     if ($stmt->execute()) {
         echo "Registration successful!";
     } else {
-        die("Error: " . $stmt->error);
+        die("Error executing query: " . $stmt->error); // Debugging statement
     }
 
     $stmt->close();
@@ -144,44 +159,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <!-- Registration Form -->
         <form action="register.php" method="POST">
-            <!-- Name Input -->
-            <div class="form-outline">
-                <label for="name">Your Name</label>
-                <input type="text" id="name" name="name" class="form-control" placeholder="Enter your name" required />
-            </div>
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" placeholder="Enter your name" required>
 
-            <!-- Email Input -->
-            <div class="form-outline">
-                <label for="email">Your Email</label>
-                <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email" required />
-            </div>
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" placeholder="Enter your email" required>
 
-            <!-- Password Input -->
-            <div class="form-outline">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" class="form-control" placeholder="Create a password" required />
-            </div>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" placeholder="Create a password" required>
 
-            <!-- Confirm Password Input -->
-            <div class="form-outline">
-                <label for="confirm-password">Repeat Password</label>
-                <input type="password" id="confirm-password" name="confirm-password" class="form-control" placeholder="Repeat your password" required />
-            </div>
+            <label for="confirm_password">Confirm Password</label>
+            <input type="password" name="confirm_password" id="confirm_password" placeholder="Repeat your password" required>
 
-            <!-- Terms and Conditions -->
-            <div class="form-check">
-                <input type="checkbox" id="terms" name="terms" required />
-                <label for="terms">I agree to the <a href="#">Terms of Service</a></label>
-            </div>
-
-            <!-- Register Button -->
             <button type="submit">Register</button>
-
-            <!-- Login Link -->
-            <p class="text-center">
-                Already have an account? <a href="login.php">Login here</a>
-            </p>
         </form>
+
+        <!-- Terms and Conditions -->
+        <div class="form-check">
+            <input type="checkbox" id="terms" name="terms" required />
+            <label for="terms">I agree to the <a href="#">Terms of Service</a></label>
+        </div>
+
+        <!-- Register Button -->
+        <button type="submit">Register</button>
+
+        <!-- Login Link -->
+        <p class="text-center">
+            Already have an account? <a href="login.php">Login here</a>
+        </p>
     </div>
 </body>
 
