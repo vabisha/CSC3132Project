@@ -2,7 +2,7 @@
 define('SERVERNAME', '127.0.0.1:3306');
 define('USERNAME', 'root');
 define('PASSWORD', 'mariadb');
-define('DBNAME', 'e_teacher');
+define('DBNAME', 'project');
 try {
 	$connect = mysqli_connect(SERVERNAME,USERNAME,PASSWORD,DBNAME);
 	if (!$connect) {
