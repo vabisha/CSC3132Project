@@ -92,14 +92,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             border-radius: 15px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
             padding: 30px;
-            max-width: 400px;
+            max-width: 500px;
             width: 100%;
             box-sizing: border-box;
+            margin-top: 50px;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
         }
 
         /* Form controls styling */
         .form-outline {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .form-control {
@@ -111,10 +118,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             box-sizing: border-box;
         }
 
+        label {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: inline-block;
+        }
+
         /* Button styling */
         button {
             border: none;
-            padding: 10px 20px;
+            padding: 12px 20px;
             font-size: 16px;
             cursor: pointer;
             border-radius: 5px;
@@ -122,6 +136,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             color: white;
             transition: 0.3s;
             width: 100%;
+            margin-top: 20px;
         }
 
         button:hover {
@@ -144,13 +159,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             margin-bottom: 15px;
             text-align: center;
         }
+
+        /* Terms and conditions check */
+        .form-check {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .form-check input {
+            margin-right: 10px;
+        }
+
+        .form-check label {
+            font-size: 14px;
+        }
     </style>
 </head>
 
 <body>
     <div class="gradient-overlay"></div>
     <div class="card">
-        <h2 class="text-center">Create an Account</h2>
+        <h2>Create an Account</h2>
 
         <!-- Error message display -->
         <?php if (isset($error)) : ?>
@@ -159,34 +188,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <!-- Registration Form -->
         <form action="register.php" method="POST">
-            <label for="name">Name</label>
-            <input type="text" name="name" id="name" placeholder="Enter your name" required>
+            <div class="form-outline">
+                <label for="name">Full Name</label>
+                <input type="text" name="name" id="name" class="form-control" placeholder="Enter your name" required>
+            </div>
 
-            <label for="email">Email</label>
-            <input type="email" name="email" id="email" placeholder="Enter your email" required>
+            <div class="form-outline">
+                <label for="email">Email Address</label>
+                <input type="email" name="email" id="email" class="form-control" placeholder="Enter your email" required>
+            </div>
 
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" placeholder="Create a password" required>
+            <div class="form-outline">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" class="form-control" placeholder="Create a password" required>
+            </div>
 
-            <label for="confirm_password">Confirm Password</label>
-            <input type="password" name="confirm_password" id="confirm_password" placeholder="Repeat your password" required>
+            <div class="form-outline">
+                <label for="confirm_password">Confirm Password</label>
+                <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Repeat your password" required>
+            </div>
 
+            <!-- Terms and Conditions -->
+            <div class="form-check">
+                <input type="checkbox" id="terms" name="terms" required />
+                <label for="terms">I agree to the <a href="#">Terms of Service</a></label>
+            </div>
+
+            <!-- Submit Button -->
             <button type="submit">Register</button>
+
+            <!-- Login Link -->
+            <p class="text-center">
+                Already have an account? <a href="login.php">Login here</a>
+            </p>
         </form>
-
-        <!-- Terms and Conditions -->
-        <div class="form-check">
-            <input type="checkbox" id="terms" name="terms" required />
-            <label for="terms">I agree to the <a href="#">Terms of Service</a></label>
-        </div>
-
-        <!-- Register Button -->
-        <button type="submit">Register</button>
-
-        <!-- Login Link -->
-        <p class="text-center">
-            Already have an account? <a href="login.php">Login here</a>
-        </p>
     </div>
 </body>
 
