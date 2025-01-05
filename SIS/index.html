@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <style>
+  /* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+nav {
+  background: #ff6f61;
+  padding: 10px 0;
+  text-align: center;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: inline-flex;
+  gap: 20px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+nav ul li a:hover {
+  background: #e55d50;
+}
+
+/* Hero Section */
+.hero {
+  background: url('hero-bg.jpg') no-repeat center center/cover;
+  color: white;
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.hero h1 {
+  font-size: 3em;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-size: 1.2em;
+}
+
+.btn {
+  display: inline-block;
+  background: #ff6f61;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.btn:hover {
+  background: #e55d50;
+}
+
+/* Featured Services */
+.featured-services {
+  padding: 40px;
+  background: #f4f4f4;
+  text-align: center;
+}
+
+.featured-services h2 {
+  margin-bottom: 20px;
+}
+
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.service {
+  background: white;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.service h3 {
+  margin-top: 0;
+}
+
+/* Testimonials */
+.testimonials {
+  padding: 40px;
+  text-align: center;
+}
+
+.testimonials blockquote {
+  font-style: italic;
+  margin: 20px auto;
+  max-width: 600px;
+}
+
+.testimonials cite {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+/* Footer */
+footer {
+  background: #333;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+}
+</style>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="aboutt.html">About Us</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="contactt.html">Contact Us</a></li>
+      <li><a href="testimonials.html">Testimonials</a></li>
+    </ul>
+  </nav>
+
+  <header class="hero">
+    <h1>Compassionate Care for Your Loved Ones</h1>
+    <p>Providing exceptional elder care services to enhance quality of life and ensure peace of mind.</p>
+    <a href="aboutt.html" class="btn">Learn More</a>
+  </header>
+
+  <main>
+    <section class="featured-services">
+      <h2>Our Services</h2>
+      <div class="service-grid">
+        <div class="service">
+          <h3>Health Check-ups</h3>
+          <p>Ensuring the health and well-being of your loved ones with regular medical check-ups.</p>
+        </div>
+        <div class="service">
+          <h3>Daily Assistance</h3>
+          <p>Helping with daily tasks such as meal preparation, bathing, and mobility support.</p>
+        </div>
+        <div class="service">
+          <h3>Companionship</h3>
+          <p>Providing emotional support and companionship to keep seniors engaged and happy.</p>
+        </div>
+      </div>
+      <a href="services.html" class="btn">View All Services</a>
+    </section>
+
+    <section class="testimonials">
+      <h2>What Our Clients Say</h2>
+      <blockquote>
+        "Elders' Care provided exceptional service for my mother. Their caregivers were kind and attentive."
+        <cite>- Sarah L.</cite>
+      </blockquote>
+      <blockquote>
+        "Thanks to Elders' Care, my father received the companionship he needed. Highly recommend their services!"
+        <cite>- Michael T.</cite>
+      </blockquote>
+      <a href="testimonials.html" class="btn">Read More Testimonials</a>
+    
+
+    <section class="cta">
+      <h2>Get in Touch</h2>
+      <p>Ready to provide your loved ones with the best care? Contact us today!</p>
+      <a href="contactt.html" class="btn">Contact Us</a>
+    </section>
+  </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Elders' Care. All Rights Reserved.</p>
+  </footer>
+</body>
+</html>
