@@ -1,37 +1,41 @@
 <?php
-// Include the database configuration file
 require_once 'dbconf.php';
 
-// Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve and sanitize form inputs
-    $name = $conn->real_escape_string($_POST['name']);
-    $email = $conn->real_escape_string($_POST['email']);
-    $password = $conn->real_escape_string($_POST['password']);
-    $confirm_password = $conn->real_escape_string($_POST['confirm-password']);
+    // Capture and sanitize form data
+    $name = trim($_POST['name']);
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
+    $confirm_password = trim($_POST['confirm_password']);
 
-    // Check if passwords match
-    if ($password !== $confirm_password) {
-        $error = "Passwords do not match!";
-    } else {
-        // Hash the password for secure storage
-        $hashed_password = password_hash($password, PASSWORD_BCRYPT);
-
-        // Insert user data into the `users` table
-        $sql = "INSERT INTO users (name, email, password) VALUES ('$name', '$email', '$hashed_password')";
-
-        if ($conn->query($sql) === TRUE) {
-            // Redirect to login page
-            header("Location: login.php");
-            exit();
-        } else {
-            $error = "Error: " . $conn->error;
-        }
+    // Validate inputs
+    if (empty($name) || empty($email) || empty($password) || empty($confirm_password)) {
+        die("All fields are required.");
     }
-}
 
-// Close the database connection
-$conn->close();
+    if ($password !== $confirm_password) {
+        die("Passwords do not match.");
+    }
+
+    // Hash the password
+    $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+
+    // Insert into database
+    $stmt = $conn->prepare("INSERT INTO users (name, email, password) VALUES (?, ?, ?)");
+    if (!$stmt) {
+        die("Prepare failed: " . $conn->error);
+    }
+
+    $stmt->bind_param("sss", $name, $email, $hashed_password);
+    if ($stmt->execute()) {
+        echo "Registration successful!";
+    } else {
+        die("Error: " . $stmt->error);
+    }
+
+    $stmt->close();
+    $conn->close();
+}
 ?>
 
 <!DOCTYPE html>
