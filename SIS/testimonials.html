@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Testimonials - Elders' Care</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #f4f4f4, #e1bee7); /* Soft gradient background */
+      color: #333;
+    }
+
+    header {
+      background: url('testimonials-bg.jpg') no-repeat center center/cover;
+      color: white;
+      text-align: center;
+      padding: 100px 20px;
+      background-position: center top;
+      background-blend-mode: overlay;
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+
+    header h1 {
+      font-size: 3.5em;
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.4);
+    }
+
+    header p {
+      font-size: 1.5em;
+      font-weight: 300;
+      margin-top: 10px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .back-arrow {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 2em;
+      color: #fff;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.7);
+      padding: 12px;
+      border-radius: 50%;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: background 0.3s;
+    }
+
+    .back-arrow:hover {
+      background: #4a148c;
+      color: white;
+    }
+
+    section {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 40px;
+      background: #ffffff;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      position: relative;
+    }
+
+    .testimonial-slider {
+      display: flex;
+      gap: 20px;
+      overflow: hidden;
+    }
+
+    .testimonial-item {
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      flex: 1 1 calc(33% - 20px);
+      min-width: 300px;
+      text-align: center;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .testimonial-item img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-bottom: 20px;
+    }
+
+    .testimonial-item p {
+      font-style: italic;
+      color: #555;
+    }
+
+    .testimonial-item h3 {
+      margin-top: 10px;
+      font-size: 1.3em;
+      color: #4a148c;
+    }
+
+    .testimonial-item h4 {
+      color: #777;
+      font-size: 1em;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #4a148c;
+      color: white;
+    }
+
+    footer a {
+      color: #ffca28;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Mobile responsiveness */
+    @media (max-width: 768px) {
+      .testimonial-slider {
+        flex-direction: column;
+      }
+
+      .testimonial-item {
+        min-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Back Arrow -->
+  <a href="javascript:history.back()" class="back-arrow">&larr;</a>
+
+  <!-- Page Content -->
+  <header>
+    <h1>Client Testimonials</h1>
+    <p>What our happy clients are saying about us</p>
+  </header>
+  
+  <section>
+    <div class="testimonial-slider">
+      <div class="testimonial-item">
+        <img src="testimonial1.jpg" alt="Client 1">
+        <p>"Elders' Care has truly been a blessing for my family. The care and attention they give my grandmother are exceptional. Highly recommended!"</p>
+        <h3>Emily Johnson</h3>
+        <h4>Granddaughter</h4>
+      </div>
+
+      <div class="testimonial-item">
+        <img src="testimonial2.jpg" alt="Client 2">
+        <p>"I feel at peace knowing my father is being looked after by such a compassionate team. They go above and beyond every day."</p>
+        <h3>Michael Lee</h3>
+        <h4>Son</h4>
+      </div>
+
+      <div class="testimonial-item">
+        <img src="testimonial3.jpg" alt="Client 3">
+        <p>"The caregivers at Elders' Care make sure my mother feels comfortable and loved. I can't thank them enough for their wonderful service."</p>
+        <h3>Sarah Williams</h3>
+        <h4>Daughter</h4>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Elders' Care. All Rights Reserved.
+  </footer>
+
+  <script>
+    // Simple testimonial slider functionality
+    let index = 0;
+    const testimonials = document.querySelectorAll('.testimonial-item');
+    const totalTestimonials = testimonials.length;
+
+    setInterval(function () {
+      testimonials[index].style.transform = 'translateX(-100%)';
+      index = (index + 1) % totalTestimonials;
+      testimonials[index].style.transform = 'translateX(0)';
+    }, 3000); // Change testimonials every 3 seconds
+  </script>
+</body>
+</html>
