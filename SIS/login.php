@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['user_email'] = $email;
 
                 // Redirect to the next page (e.g., dashboard or home page)
-                header("Location: dashboard.php");
+                header("Location: index.html");
                 exit();
             } else {
                 $error_message = "Incorrect password. Please try again.";
